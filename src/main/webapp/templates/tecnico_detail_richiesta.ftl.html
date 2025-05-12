@@ -1,0 +1,69 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <#if (richiesta.stato == "Da prendere in carico")>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_richieste">Nuove richieste</a></li>
+        </#if>
+        <#if proposta??>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_proposte">Storico proposte</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_detail_proposta?id=${proposta}">Proposta #${proposta}</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Richiesta #${richiesta.key}</li>
+    </ul>
+    
+    
+    <h1 class="w3-center detail-title">Dettaglio richiesta</h1>
+    <div class="detail-container">
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Richiesta:</div>
+            <div class="w3-half w3-container w3-padding detail-value">#${richiesta.key}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Stato:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.stato}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Data:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.data}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Utente:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.IDord}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Categoria:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.IDcat}</div>
+        </div>
+        <#list caratteristiche as nome, valore>
+            <div class="w3-row">
+                <div class="w3-half w3-container w3-padding detail-label">${nome}:</div>
+                <div class="w3-half w3-container w3-padding detail-value">${valore}</div>
+            </div>
+        </#list>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Note:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.note}</div>
+        </div>
+        <#if (richiesta.stato == "Da prendere in carico")>
+            <form method="POST" action="tecnico_detail_richiesta"> 
+                <input type="hidden" name="action" value="updateTec">
+                <input type="hidden" name="r" value="${richiesta.key}">
+                <div>
+                    <button type="submit" class="mainbutton">Prendi in carico</button>
+                </div>
+            </form>
+        </#if>
+        <#if (richiesta.stato == "Presa in carico")>
+            <form method="POST" action="proposta"> 
+                <input type="hidden" name="r" value="${richiesta.key}">
+                <div>
+                    <button type="submit" class="mainbutton">Compila proposta</button>
+                </div>
+            </form>
+        </#if>
+    </div>
+</div>

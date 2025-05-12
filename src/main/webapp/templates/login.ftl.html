@@ -1,0 +1,18 @@
+<div class="w3-container" id="body">
+    <h1 class="w3-center form-title">Effettua l'accesso</h1>
+    <div class="form-container">
+        <#if (error??)>
+            <p class="form-error w3-center">${error}</p>
+        </#if>
+        <form method="POST" action="login">
+            <input type="hidden" name="login" value="true"/>
+            
+            <div class="w3-row-padding"> 
+                <input class="w3-input w3-border input-form" type="text" id="username" name="username" placeholder="Username" required>
+                <input class="w3-input w3-border input-form" type="password" id="password" name="password" placeholder="Password" required>
+                <input class="w3-button w3-blue w3-border w3-round mainformbutton" type="submit" value="Accedi">
+            </div>
+        </form>
+    </div>
+</div>
+

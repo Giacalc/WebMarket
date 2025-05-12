@@ -1,0 +1,33 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_detail_richiesta?r=${richiesta}">Richiesta #${richiesta}</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Nuova proposta</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">Compila proposta</h1>
+    <div class="form-container w3-center">
+        <form method="POST" action="proposta">
+            <input type="hidden" name="action" value="creaProposta">
+            <input type="hidden" name="r" value="${richiesta}">
+
+            <label class="label-form" for="produttore">Nome produttore</label>
+            <input class="w3-input w3-border input-form" type="text" id="produttore" name="produttore" placeholder="Nome Produttore" required>
+            <label class="label-form" for="prodotto">Nome prodotto</label>
+            <input class="w3-input w3-border input-form" type="text" id="prodotto" name="prodotto" placeholder="Nome Prodotto" required>
+            <label class="label-form" for="codiceprod">Codice prodotto</label>
+            <input class="w3-input w3-border input-form" type="text" id="codiceprod" name="codiceprod" maxlength="10" placeholder="Codice" required>
+            <label class="label-form" for="prezzo">Prezzo del prodotto (€)</label>
+            <input class="w3-input w3-border input-form" type="number" id="prezzo" name="prezzo" min="0" max="100000" step="0.01" placeholder="Prezzo" required>
+            <label class="label-form" for="url">URL di riferimento</label>
+            <input class="w3-input w3-border input-form" type="text" id="url" name="url" maxlength="200" placeholder="URL">
+            <label class="label-form" for="note">Eventuali note da riportare all'ordinante</label>
+            <textarea class="w3-input w3-border input-form" id="note" name="note" maxlength="200" placeholder="Inserisci note"></textarea>
+
+            <input class="w3-button w3-blue w3-border w3-round" type="submit" value="Invia">
+        </form>
+    </div>
+</div>
+

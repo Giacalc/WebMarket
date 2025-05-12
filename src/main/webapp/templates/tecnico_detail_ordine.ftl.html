@@ -1,0 +1,45 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_ordini">Ordini</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Ordine #${ordine.key}</li>
+    </ul>
+    
+    <h1 class="w3-center detail-title">Dettaglio ordine</h1>
+    <div class="detail-container">
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Ordine:</div>
+            <div class="w3-half w3-container w3-padding detail-value">#${ordine.key}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Stato:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${ordine.stato}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Data ordine:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${ordine.dataOrdine}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Data consegna</div>
+            <div class="w3-half w3-container w3-padding detail-value">${ordine.dataConsegna}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Proposta</div>
+            <div class="w3-half w3-container w3-padding detail-value">
+                <a href="tecnico_detail_proposta?id=${ordine.idProp}&r=${richiesta.key}">
+                    #${ordine.idProp}   
+                </a>
+            </div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Richiesta</div>
+            <div class="w3-half w3-container w3-padding detail-value">
+                <a href="tecnico_detail_richiesta?r=${richiesta.key}">
+                    #${richiesta.key}   
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

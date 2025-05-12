@@ -1,0 +1,50 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="admin_categorie">Gestisci categorie</a></li>
+        <#if pmicrocategoria??> 
+            <li class="separator"><i class="fa fa-angle-right"></i></li>
+            <li><a href="admin_sottocategorie?cat=${socat?url}">Gestisci sottocategorie</a></li>
+            <li class="separator"><i class="fa fa-angle-right"></i></li>
+            <li><a href="admin_microcategorie?scat=${pmicrocategoria.sottocategoria?url}">Gestisci microcategorie</a></li>
+            <li class="separator"><i class="fa fa-angle-right"></i></li>
+            <li><a href="admin_caratteristiche?mcat=${pmicrocategoria.nome?url}">Gestisci caratteristiche</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc"><#if pmicrocategoria?? && caratteristica??>Modifica caratteristica<#else>Nuova caratteristica</#if></li>
+    </ul>
+    
+    <h1 class="w3-center form-title">
+        <#if caratteristica??>Modifica caratteristica<#else>Aggiungi caratteristica</#if>
+    </h1>
+    <div class="form-container w3-center">
+        <form method="POST" action="admin_caratteristica">
+            <input type="hidden" name="action" value="<#if caratteristica??>modificaCaratteristica<#else>aggiungiCaratteristica</#if>">
+            <#if caratteristica??>
+                 <input type="hidden" name="OLD" value="${caratteristica.nome?url}">
+                 <input type="hidden" name="OLDm" value="${pmicrocategoria.nome?url}">
+            </#if>
+            <div class="w3-row-padding">
+                <#if (microcategorie?size > 0)>
+                <label class="label-form" for="mcategoria">Categoria di riferimento</label>
+                    <select class="w3-input w3-border w3-round input-form" id="mcategoria" name="mcategoria" required>
+                        <option value="" disabled hidden <#if !pmicrocategoria??>selected</#if>>Microcategoria</option>
+                        <#list microcategorie as mcategoria>
+                            <option value="${mcategoria.key?url}" 
+                                <#if pmicrocategoria?? && mcategoria.nome == pmicrocategoria.nome>selected</#if>>
+                                ${mcategoria.nome}
+                            </option>
+                        </#list>
+                    </select>
+                </#if>
+                <label class="label-form" for="nome">Nome</label>
+                <input class="w3-input w3-border input-form" type="text" id="nome" name="nome"
+                    placeholder="Nome" maxlength="45"
+                    <#if caratteristica??> value="${caratteristica.nome?url}"</#if> required>
+                <input class="w3-button w3-blue w3-border w3-round button-card" type="submit"
+                    value="<#if caratteristica??>Aggiorna<#else>Aggiungi</#if>">
+            </div>
+        </form>   
+    </div>
+</div>

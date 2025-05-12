@@ -1,0 +1,29 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Storico richieste</li>
+    </ul>
+    
+    <h1  class="w3-center list-items-title">Storico richieste</h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Codice</th>
+                    <th>Categoria</th>
+                    <th>Data richiesta</th>
+                    <th>Stato</th>
+                </tr>
+                <#list richieste as richiesta>
+                <tr onclick="location.href='ordinante_detail_richiesta?r=${richiesta.key}'" >
+                    <td>${richiesta.key}</td>
+                    <td>${richiesta.IDcat}</td>
+                    <td>${richiesta.data}</td>
+                    <td>${richiesta.stato}</td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>       
+</div>

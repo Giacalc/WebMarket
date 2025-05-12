@@ -1,0 +1,27 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_ordini">Ordini</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_detail_ordine?id=${ordine}">Ordine #${ordine}</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Rifiuto ordine</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">Motiva il rifiuto</h1>
+    <div class="form-container">
+        <form method="POST" action="ordine_rifiuto">  
+            <input type="hidden" name="o" value="${ordine}">
+            <input type="hidden" name="action" value="rifiutaOrdine">
+            <div class="w3-row-padding">  
+                <select class="w3-input w3-border input-form" id="ord_rifiuto" name="ord_rifiuto" required>
+                    <option value="" disabled selected hidden>Clicca qui per scegliere la motivazione</option>
+                    <option value="rnc">Non conforme</option>
+                    <option value="rnf">Non funzionante</option>
+                </select>
+                <input class="w3-button w3-blue w3-border w3-round mainformbutton" type="submit" value="Conferma">
+            </div>
+        </form>
+    </div>
+</div>

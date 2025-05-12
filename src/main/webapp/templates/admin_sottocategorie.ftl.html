@@ -1,0 +1,44 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="admin_categorie">Gestisci categorie</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Gestisci sottocategorie</li>
+    </ul>
+    
+    <h1 class="w3-center list-items-title">
+        Gestisci sottocategorie
+    <a class="w3-button w3-blue w3-rounded w3-right w3-margin-right" onclick="location.href='admin_sottocategoria?cat=${categoria.nome}'">+</a>
+    </h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Nome</th>
+                    <th>Azioni</th>
+                </tr>
+                <#list sottocategorie as sottocategoria>
+                <tr onclick="location.href='admin_microcategorie?scat=${sottocategoria.nome}'">
+                    <td class="w3-center" style="vertical-align: middle;">${sottocategoria.nome} </td>
+                    <td>
+                      <button class="w3-button w3-border w3-round" 
+                              onclick="event.stopPropagation();
+                                  location.href='admin_sottocategoria?scat=${sottocategoria.nome}&cat=${categoria.nome}'">
+                          <i class="fa fa-pencil"></i>
+                      </button>                      
+                       <button class="w3-button w3-border w3-round" 
+                                onclick="
+                                    event.stopPropagation(); 
+                                    if (confirmDelete('${sottocategoria.nome!}', 'la sottocategoria')) {
+                                        location.href='admin_sottocategorie?dscat=${sottocategoria.nome}';
+                                    }">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>
+</div> 

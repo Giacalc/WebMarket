@@ -1,0 +1,24 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_proposte">Proposte attive</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_detail_proposta?id=${proposta}">Proposta #${proposta}</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Rifiuto proposta</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">Motiva il rifiuto</h1>
+    <div class="form-container">
+        <form method="POST" action="proposta_rifiuto">
+            <input type="hidden" name="p" value="${proposta}">
+            <input type="hidden" name="action" value="rifiutaProposta">
+            <div class="w3-row-padding">
+                <textarea class="w3-input w3-border input-form" id="motivazione" name="motivazione" maxlength="200" placeholder="Scrivi la motivazione" required></textarea>
+                <input class="w3-button w3-blue w3-border w3-round mainformbutton" type="submit" value="Conferma">
+                <button class="w3-button w3-blue w3-border w3-round mainformbutton" onclick="location.href='ordinante_detail_proposta?id=${proposta}'">Annulla</button>
+            </div>
+        </form>
+    </div>
+</div>

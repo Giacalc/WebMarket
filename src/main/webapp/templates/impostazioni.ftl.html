@@ -1,0 +1,77 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <#if logininfo?? && logininfo.ruolo == "Ordinante">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if logininfo?? && logininfo.ruolo == "Tecnico">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if logininfo?? && logininfo.ruolo == "Amministratore">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>   
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Impostazioni account</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">Modifica profilo</h1>
+    <div class="form-container w3-center">
+        <#if (error??)>
+            <p class="form-error w3-center">${error}</p>
+        </#if>
+        <form method="POST" action="impostazioni">
+            <input type="hidden" name="action" value="impostazioni">      
+            <label class="label-form" for="nome">Nome</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="nome" name="nome" maxlength="100"
+                placeholder="Nome" 
+                value="${utente.nome}" required>
+                
+            <label class="label-form" for="cognome">Cognome</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="cognome" name="cognome" maxlength="100"
+                placeholder="Cognome" 
+                value="${utente.cognome}" required>
+                
+            <label class="label-form" for="username">Username</label>
+            <input class="w3-input w3-border input-form" maxlength="100"
+                type="text" id="username" name="username" 
+                placeholder="Username" 
+                value="${utente.username}" required> 
+            
+            <label class="label-form" for="email">Email</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="email" name="email" maxlength="100"
+                placeholder="Email" 
+                value="${utente.mail}"  required>
+            <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="<#if utente??>Aggiorna<#else>Crea</#if>">
+        </form>
+    </div>
+    
+    <h1 class="w3-center form-title">Modifica password</h1>
+    <div class="form-container w3-center">
+        <#if (error??)>
+            <p class="form-error w3-center">${error}</p>
+        </#if>
+        <form method="POST" action="cambiopassword">
+            <input type="hidden" name="action" value="impostazioni">      
+               
+            <label class="label-form" for="vpassword">Vecchia password</label>
+            <input class="w3-input w3-border input-form"
+                type="password" id="vpassword" name="vpassword" maxlength="32"
+                placeholder="Vecchia password">
+            
+            <label class="label-form" for="npassword1">Nuova password</label>
+            <input class="w3-input w3-border input-form"
+                type="password" id="npassword1" name="password1" maxlength="32" 
+                placeholder="Password" >
+
+            <label class="label-form" for="npassword2">Ripeti password</label>
+            <input class="w3-input w3-border input-form" 
+                type="password" id="npassword2" name="password2" maxlength="32" 
+                placeholder="Ripeti password" >
+
+            <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="<#if utente??>Aggiorna<#else>Crea</#if>">
+        </form>
+    </div>
+    
+</div>

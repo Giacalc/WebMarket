@@ -1,0 +1,29 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+         <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Storico proposte</li>
+    </ul>
+
+    <h1 class="w3-center list-items-title">Proposte</h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Codice</th>
+                    <th>Richiesta</th>
+                    <th>Data</th>
+                    <th>Stato</th>
+                </tr>
+                <#list proposte as proposta>
+                <tr <#if proposta.revisione == "Accettata" || proposta.revisione == "Rifiutata" > class="highlight" </#if> onclick="location.href='tecnico_detail_proposta?id=${proposta.key}'">
+                    <td>${proposta.key}</td>
+                    <td>${proposta.IDric}</td>
+                    <td>${proposta.data}</td>
+                    <td>${proposta.revisione}</td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>       
+</div> 

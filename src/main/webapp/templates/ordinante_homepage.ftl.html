@@ -1,0 +1,57 @@
+<div class="w3-container" id="body">
+    <p class="greeting">Ciao ${utente}</p>
+
+    <#if (categorie?size > 0)>
+        <h1 class="w3-center form-title">Effettua una richiesta</h1>
+        <div class="form-container">
+            <form method="POST" action="richiesta">
+                <div class="w3-row-padding">
+                    <div class="w3-center">
+
+                        <select class="w3-input w3-border w3-round input-form" id="categoria" name="categoria">
+                            <option value="" disabled selected hidden>Categoria</option>
+                            <#list categorie as categoria>
+                                <option value="${categoria.key}">${categoria.nome}</option>
+                            </#list>
+                        </select>
+
+                        <select class="w3-input w3-border w3-round input-form" id="scategoria" name="scategoria">
+                            <option value="" disabled selected hidden>Sottocategoria</option>
+                        </select>
+
+                        <select class="w3-input w3-border input-form" id="mcategoria" name="mcategoria">
+                            <option value="" disabled selected hidden>Microcategoria</option>
+                        </select>
+
+                        <input class="w3-button w3-blue w3-border w3-round button-card" 
+                               id="procediButton" 
+                               type="submit" 
+                               value="Procedi" 
+                               style="display: none;">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <h1 class="w3-center list-items-title">Richieste attive</h1>
+        <div class="list-items-container">
+            <div class="w3-responsive">
+                <table class="w3-table-all w3-centered">
+                    <tr>
+                        <th>Codice</th>
+                        <th>Categoria</th>
+                        <th>Data richiesta</th>
+                        <th>Stato</th>
+                    </tr>
+                    <#list richiesteInCorso as richiesta>
+                    <tr onclick="location.href='ordinante_detail_richiesta?r=${richiesta.key}'" >
+                        <td>${richiesta.key}</td>
+                        <td>${richiesta.IDcat}</td>
+                        <td>${richiesta.data}</td>
+                        <td>${richiesta.stato}</td>
+                    </tr>
+                    </#list>
+                </table>
+            </div>
+        </div>       
+    </#if>
+</div>

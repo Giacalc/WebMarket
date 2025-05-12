@@ -1,0 +1,29 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Ordini</li>
+    </ul>
+    
+    <h1 class="w3-center list-items-title">Ordini</h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Codice ordine</th>
+                    <th>Data ordine</th>
+                    <th>Data consegna</th>
+                    <th>Stato</th>
+                </tr>
+                <#list ordini as ordine>
+                <tr onclick="location.href='tecnico_detail_ordine?id=${ordine.key}'" >
+                    <td>${ordine.key}</td>
+                    <td>${ordine.dataOrdine}</td>
+                    <td>${ordine.dataConsegna}</td>
+                    <td>${ordine.stato}</td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>       
+</div> 

@@ -1,0 +1,27 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Crea una richiesta</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">Definisci le caratteristiche</h1>
+    <div class="form-container w3-center">
+        <form method="POST" action="richiesta">
+            <input type="hidden" name="action" value="createRichiesta">
+            <input type="hidden" name="mcategoria" value="${mcategoria}">
+            <p class="form-desc">Lasciare vuoto il campo se indifferente</p>
+            <#if (caratteristiche?size>0)>
+                <#list caratteristiche as c>
+                    <label class="label-form" for="${c.key}">${c.nome}</label>
+                    <input class="w3-input w3-border input-form" type="text" id="${c.key}" name="${c.key}" maxlength="45" placeholder="${c.nome}">
+                </#list>
+            <#else>
+                <p>La categoria scelta non presenta caratteristiche</p>
+            </#if>
+            <label class="label-form" for="note">Eventuali note da riportare al tecnico</label>
+            <textarea class="w3-input w3-border input-form" id="note" name="note" maxlength="200" placeholder="Inserisci note"></textarea>
+            <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="Invia">
+        </form>
+    </div>
+</div>

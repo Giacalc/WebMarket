@@ -1,0 +1,75 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="tecnico_proposte">Storico proposte</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Proposta #${proposta.key}</li>
+    </ul>
+    
+    <h1 class="w3-center detail-title">Dettaglio proposta</h1>
+    <div class="detail-container">
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Proposta:</div>
+            <div class="w3-half w3-container w3-padding detail-value">#${proposta.key}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Stato:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.revisione}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Richiesta di riferimento:</div>
+            <div class="w3-half w3-container w3-padding detail-value">
+                <a href="tecnico_detail_richiesta?r=${proposta.IDric}&p=${proposta.key}">
+                    #${proposta.IDric}   
+                </a>
+            </div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Codice prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.IDprod}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Nome produttore:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.nome_produttore}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Nome prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.nome}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Prezzo:</div>
+            <div class="w3-half w3-container w3-padding detail-value">€ ${prodotto.prezzo}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">URL Prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.url}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Note:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.note}</div>
+        </div>
+        <#if (proposta.revisione == "Rifiutata")>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Motivazione rifiuto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.rev_motivazione}</div>
+        </div>
+        
+        <form method="POST" action="proposta"> 
+            <input type="hidden" name="r" value="${proposta.IDric}">
+            <div> 
+                <button type="submit" class="mainbutton">Ricompila proposta</button>
+            </div>
+        </form>
+        </#if>
+        <#if (proposta.revisione == "Accettata")>
+            <form method="POST" action="tecnico_detail_proposta"> 
+                <input type="hidden" name="p" value="${proposta.key}">
+                <input type="hidden" name="action" value="CreaOrdine">
+                <div>
+                    <button type="submit" class="mainbutton">Invia ordine</button>
+                </div>
+            </form>
+        </#if>
+    </div>
+</div>

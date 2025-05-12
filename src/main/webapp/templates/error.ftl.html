@@ -1,0 +1,46 @@
+<div class="w3-container" id="body">
+    <#if ruolo_err??>
+    <ul class="breadcrumb">
+        <#if ruolo_err == "Ordinante">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if ruolo_err == "Tecnico">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if ruolo_err == "Amministratore">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Errore</li>
+    </ul>
+    </#if>
+    <#if err??>
+    <ul class="breadcrumb">
+        <#if err == "o">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if err == "t">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <#if err == "a">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Errore</li>
+    </ul>
+    </#if>
+
+    <h1 class="error-title">Errore</h1>
+    <p class="w3-center">${error!"Errore sconosciuto"}</p>
+    <#if ruolo_err??>
+        <button class="mainbutton" onclick="window.location.href='<#if ruolo_err == "Ordinante">ordinante_homepage</#if><#if ruolo_err == "Tecnico">tecnico_homepage</#if><#if ruolo_err == "Amministratore">admin_homepage</#if>'">
+            Torna alla home</button>      
+    </#if>
+    <#if err??>
+        <button class="mainbutton" onclick="window.location.href='<#if err == "o">ordinante_homepage</#if><#if err == "t">tecnico_homepage</#if><#if err == "a">admin_homepage</#if>'">
+            Torna alla home</button>      
+    </#if>
+    <#if !(ruolo_err?? || err??)>
+        <button class="mainbutton" onclick="window.location.href='login'">Accedi</button>
+    </#if>
+</div>

@@ -1,0 +1,28 @@
+<div class="w3-container " id="body">
+    <ul class="breadcrumb">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="admin_categorie">Gestisci categorie</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc"><#if pcategoria??>Modifica<#else>Aggiungi</#if> categoria</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">
+        <#if pcategoria??>Modifica Categoria<#else>Aggiungi Categoria</#if>
+    </h1>
+    <div class="form-container w3-center">
+        <form method="POST" action="admin_categoria" id="categoria">
+            <input type="hidden" name="action" value="<#if pcategoria?? && !psottocategoria??>modificaCategoria<#else>aggiungiCategoria</#if>">
+            <#if pcategoria??>
+                <input type="hidden" name="OLD" value="${pcategoria.nome}">
+            </#if>
+            <div class="w3-row-padding">
+                <label class="label-form" for="nome">Nome categoria</label>
+                <input class="w3-input w3-border input-form" type="text" id="nome" name="nome" maxlength="45" placeholder="Nome" <#if pcategoria?? && !psottocategoria??> value="${pcategoria.nome}" </#if> required>
+                <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="<#if pcategoria?? && !psottocategoria??>Aggiorna<#else>Aggiungi</#if>">
+            </div>
+        </form>
+    </div>
+</div>    
+
+

@@ -1,0 +1,85 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <#if richiesta??>
+        <#if richiesta.stato == "Completata">
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_storico">Storico richieste</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_detail_richiesta?r=${richiesta}">Richiesta #${richiesta.key}</a></li>
+        <#else>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_proposte">Proposte attive</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Proposta #${proposta.key}</li>
+    </ul>
+
+    <h1 class="w3-center detail-title">Dettaglio proposta</h1>
+    <div class="detail-container">
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Proposta:</div>
+            <div class="w3-half w3-container w3-padding detail-value">#${proposta.key}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Stato:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.revisione}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Data:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.data}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Tecnico:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.IDtec}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Richiesta:</div>
+            <div class="w3-half w3-container w3-padding detail-value">
+                <a href="ordinante_detail_richiesta?r=${proposta.IDric}&p=${proposta.key}">
+                    #${proposta.IDric}   
+                </a>
+            </div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Codice prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.IDprod}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Nome produttore:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.nome_produttore}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Nome prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.nome}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Prezzo:</div>
+            <div class="w3-half w3-container w3-padding detail-value">€ ${prodotto.prezzo}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">URL Prodotto:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${prodotto.url}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Note:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${proposta.note}</div>
+        </div>
+        <#if (proposta.revisione == "In attesa")>
+            <form method="POST" action="ordinante_detail_proposta"> 
+                <input type="hidden" name="p" value="${proposta.key}">
+                <input type="hidden" name="action" value="AccettaProposta">
+                <div>
+                    <button type="submit" class="mainbutton">Accetta</button>
+                </div>
+            </form>
+            <form method="POST" action="proposta_rifiuto"> 
+                <input type="hidden" name="p" value="${proposta.key}">
+                <div>
+                    <button type="submit" class="mainbutton">Rifiuta</button>
+                </div>
+            </form>
+        </#if> 
+    </div>
+</div>

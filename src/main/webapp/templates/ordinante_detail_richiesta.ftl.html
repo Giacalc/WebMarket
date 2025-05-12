@@ -1,0 +1,61 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+     <li><a href="ordinante_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li> 
+        <#if proposta??>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_proposte">Proposte attive</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_detail_proposta?id=${proposta}">Proposta #${proposta}</a></li>
+        <#else>
+        <#if richiesta.stato == "Completata">
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="ordinante_storico">Storico richieste</a></li>
+        </#if>
+        </#if>
+           <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Richiesta #${richiesta.key}</li>
+    </ul>
+    
+    <h1 class="w3-center detail-title">Dettaglio richiesta</h1>
+    <div class="detail-container" >                     
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Richiesta:</div>
+            <div class="w3-half w3-container w3-padding detail-value">#${richiesta.key}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Stato:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.stato}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Data:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.data}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Categoria:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.IDcat}</div>
+        </div>
+        <#list caratteristiche as nome, valore>
+            <div class="w3-row">
+                <div class="w3-half w3-container w3-padding detail-label">${nome}:</div>
+                <div class="w3-half w3-container w3-padding detail-value">${valore}</div>
+            </div>
+        </#list>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-padding detail-label">Note:</div>
+            <div class="w3-half w3-container w3-padding detail-value">${richiesta.note}</div>
+        </div>
+        <div class="w3-row">
+            <div class="w3-half w3-container detail-label-items">Proposte associate:</div>
+            <div class="w3-half w3-container w3-padding detail-value">
+                <div class="w3-bar">
+                    <#list proposte as proposta>
+                        <button class="w3-button w3-border w3-round" onclick="location.href='ordinante_detail_proposta?id=${proposta.key}&r=${richiesta.key}'">
+                            #${proposta.key}
+                        </button>                    
+                        <#if proposta_has_next> </#if>
+                    </#list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

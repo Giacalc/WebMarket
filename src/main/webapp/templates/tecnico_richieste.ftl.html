@@ -1,0 +1,29 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+        <li><a href="tecnico_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Nuove richieste</li>
+    </ul>
+    
+    <h1 class="w3-center list-items-title">Nuove richieste</h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Codice richiesta</th>
+                    <th>Categoria</th>
+                    <th>Utente</th>
+                    <th>Stato</th>
+                </tr>
+                <#list richieste as richiesta>
+                <tr onclick="location.href='tecnico_detail_richiesta?r=${richiesta.key}'">
+                    <td>${richiesta.key}</td>
+                    <td>${richiesta.IDcat}</td>
+                    <td>${richiesta.IDord}</td>
+                    <td>${richiesta.stato}</td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>       
+</div>

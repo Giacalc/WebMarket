@@ -1,0 +1,72 @@
+<div class="w3-container" id="body">
+    <ul class="breadcrumb">
+       <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+       <li class="separator"><i class="fa fa-angle-right"></i></li>
+       <li><a href="admin_utenti">Gestisci utenti</a></li>
+       <li class="separator"><i class="fa fa-angle-right"></i></li>
+       <#if utente??>
+       <li class="currentpage_bc">Modifica utente</li>
+       </#if>
+       <#if !utente??><li class="currentpage_bc">Aggiungi utente</li></#if>
+    </ul>
+    
+    <h1 class="w3-center form-title">
+        <#if utente??>Modifica Utente</#if>
+        <#if !utente??>Crea un Nuovo Utente</#if>
+    </h1>
+    <div class="form-container w3-center">
+        <#if (error??)>
+            <p class="form-error w3-center">${error}</p>
+        </#if>
+        <form method="POST" action="admin_utente">
+            <input type="hidden" name="action" value="<#if utente??>updateUser<#else>createUser</#if>">
+            <#if utente??>
+                <input type="hidden" name="OLD" value="${utente.username}">
+            </#if>
+            <#if !utente?? || utente.ruolo != "Amministratore">
+            <label class="label-form" for="ruolo">Ruolo utente</label>
+            <select class="w3-input w3-border w3-round input-form" id="ruolo" name="ruolo" required>
+                <option value="" disabled hidden>Ruolo</option>
+                <option value="ordinante" <#if utente?? && utente.ruolo == "Ordinante">selected</#if>>Ordinante</option>
+                <option value="tecnico" <#if utente?? && utente.ruolo == "Tecnico">selected</#if>>Tecnico</option>
+            </select>
+            </#if>
+
+            <label class="label-form" for="nome">Nome</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="nome" name="nome" maxlength="100"
+                placeholder="Nome" 
+                <#if utente??> value="${utente.nome}"</#if> required>
+                
+            <label class="label-form" for="cognome">Cognome</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="cognome" name="cognome" maxlength="100"
+                placeholder="Cognome" 
+                <#if utente??> value="${utente.cognome}"</#if> required>
+                
+            <label class="label-form" for="username">Username</label>
+            <input class="w3-input w3-border input-form" maxlength="100"
+                type="text" id="username" name="username" 
+                placeholder="Username" 
+                <#if utente??> value="${utente.username}"</#if> required>
+            
+            <label class="label-form" for="email">Email</label>
+            <input class="w3-input w3-border input-form" 
+                type="text" id="email" name="email" maxlength="100"
+                placeholder="Email" 
+                <#if utente??> value="${utente.mail}"</#if> required>
+
+            <label class="label-form" for="password1">Password</label>
+            <input class="w3-input w3-border input-form"
+                type="password" id="password1" name="password1" maxlength="32" 
+                placeholder="Password" required>
+
+            <label class="label-form" for="password2">Ripeti password</label>
+            <input class="w3-input w3-border input-form" 
+                type="password" id="password2" name="password2" maxlength="32" 
+                placeholder="Ripeti password" required>
+
+            <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="<#if utente??>Aggiorna<#else>Crea</#if>">
+        </form>
+    </div>
+</div>

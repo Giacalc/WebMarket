@@ -1,0 +1,43 @@
+<div class="w3-container" id="body">   
+    <ul class="breadcrumb">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc">Gestisci utenti</li>
+    </ul>
+    
+    <h1 class="w3-center list-items-title">
+        Gestisci utenti
+        <a class="w3-button w3-blue w3-rounded w3-right w3-margin-right" onclick="location.href='admin_utente'">+</a>
+    </h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Ruolo</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Azioni</th>
+                </tr>
+                <#list utenti as utente>
+                <tr>
+                    <td class="w3-center" style="vertical-align: middle;">${utente.ruolo}</td>
+                    <td class="w3-center" style="vertical-align: middle;">${utente.username}</td>
+                    <td class="w3-center" style="vertical-align: middle;">${utente.mail}</td>
+                    <td>
+                        <button class="w3-button w3-border w3-round" 
+                                onclick="location.href='admin_utente?u=${utente.username}'">
+                            <i class="fa fa-pencil"></i>
+                        </button> 
+                        
+                        <button class="w3-button w3-border w3-round" 
+                            onclick="if (confirmDelete('${utente.username!}', 'l\'utente')) {
+                                location.href = 'admin_utenti?duser=${utente.username}'; }">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>
+</div> 

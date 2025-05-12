@@ -1,0 +1,41 @@
+<div class="w3-container " id="body">
+    <ul class="breadcrumb">
+        <li><a href="admin_homepage"><i class="fa fa-home w3-margin-left"></i> Home</a></li>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li><a href="admin_categorie">Gestisci categorie</a></li>
+        <#if pcategoria??> 
+            <li class="separator"><i class="fa fa-angle-right"></i></li>
+            <li><a href="admin_sottocategorie?cat=${pcategoria.nome}">Gestisci sottocategorie</a></li>
+        </#if>
+        <li class="separator"><i class="fa fa-angle-right"></i></li>
+        <li class="currentpage_bc"><#if pcategoria?? && psottocategoria??>Modifica<#else>Nuova</#if> sottocategoria</li>
+    </ul>
+    
+    <h1 class="w3-center form-title">
+        <#if pcategoria?? && psottocategoria??>Modifica Sottocategoria<#else>Aggiungi Sottocategoria</#if>
+    </h1>
+    <div class="form-container w3-center">
+        <form method="POST" action="admin_sottocategoria" id="scategoria">
+            <input type="hidden" name="action" value="<#if pcategoria?? && psottocategoria??>modificaSottocategoria<#else>aggiungiSottoCategoria</#if>">
+            <#if pcategoria?? && psottocategoria??>
+                <input type="hidden" name="OLD" value="${psottocategoria.nome}">
+            </#if>
+            <#if (categorie?size > 0)>
+                <label class="label-form" for="categoria_padre">Categoria</label>
+                <select class="w3-input w3-border w3-round input-form" id="categoria_padre" name="categoria_padre" required>
+                    <option value="" disabled <#if !(pcategoria??)>selected</#if> hidden>Categoria</option>
+                    <#list categorie as categoria>
+                        <option value="${categoria.key}" 
+                                <#if pcategoria?? && categoria.nome == pcategoria.nome>selected</#if>>
+                            ${categoria.nome}
+                        </option>
+                    </#list>
+                </select>
+            </#if>
+
+            <label class="label-form" for="nome">Nome sottocategoria</label>
+            <input class="w3-input w3-border input-form" type="text" id="nome" name="nome" maxlength="45" placeholder="Nome" <#if pcategoria?? && psottocategoria??> value="${psottocategoria.nome}"</#if> required>
+            <input class="w3-button w3-blue w3-border w3-round button-card" type="submit" value="<#if pcategoria?? && psottocategoria??>Aggiorna<#else>Aggiungi</#if>">
+        </form>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div id="header">
+    <div class="w3-center">
+        <h1 class="webmarket"><span class="web">Web</span><span class="market">Market</span></h1>
+        <p class="slogan">Il tuo shopping, la tua richiesta</p>
+    </div>
+    <!-- Menù -->
+    <#if logininfo??>
+        <div class="w3-bar w3-blue w3-large">
+            <#if logininfo.ruolo == "Ordinante">
+                <a href="ordinante_storico" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="ords">mi-active</#if>">
+                    Richieste</a>
+                <a href="ordinante_proposte" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="ordp">mi-active</#if>">
+                    <#if notifica_ord_nuoveprop??>
+                        <span class="badge">${notifica_ord_nuoveprop}</span>
+                    </#if>
+                    <span>Proposte</span>
+                </a>
+                <a href="ordinante_ordini" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="ordo">mi-active</#if>">
+                    <#if notifica_ord_nuoviord??>
+                    <span class="badge">${notifica_ord_nuoviord}</span>
+                    </#if>
+                    Ordini
+                </a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="i">mi-active</#if>">Impostazioni</a>
+                <a href="logout?referrer=${thispageurl?url}" class="w3-bar-item w3-button w3-mobile menu-logoutitem">
+                    <i class="fa fa-sign-out"></i>
+                </a>
+            </#if>
+            <#if logininfo.ruolo == "Tecnico">
+                <a href="tecnico_richieste" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="tric">mi-active</#if>">
+                    <#if notifica_tec_nuoveric??>
+                    <span class="badge">${notifica_tec_nuoveric}</span>
+                    </#if>
+                    Richieste      
+                </a>
+                <a href="tecnico_proposte" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="tprop">mi-active</#if>">
+                    <#if notifica_tec_aggprop??>
+                        <span class="badge">${notifica_tec_aggprop}</span>
+                    </#if>
+                    Proposte
+                </a>
+                <a href="tecnico_ordini" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="tord">mi-active</#if>">Ordini</a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menu-item <#if active?? && active=="i">mi-active</#if>">Impostazioni</a>  
+                <a href="logout?referrer=${thispageurl?url}" class="w3-bar-item w3-button w3-mobile menu-logoutitem">
+                    <i class="fa fa-sign-out"></i>
+                </a>
+            </#if>
+            <#if logininfo.ruolo == "Amministratore">
+                <a href="admin_utenti" class="w3-bar-item w3-button w3-mobile menuadmin-item <#if active?? && active=="au">mi-active</#if>">Gestisci utenti</a>
+                <a href="admin_categorie" class="w3-bar-item w3-button w3-mobile menuadmin-item <#if active?? && active=="ac">mi-active</#if>">Gestisci categorie</a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menuadmin-item <#if active?? && active=="i">mi-active</#if>">Impostazioni</a>
+                <a href="logout?referrer=${thispageurl?url}" class="w3-bar-item w3-button w3-mobile menu-logoutitem-amm">
+                    <i class="fa fa-sign-out"></i>
+                </a>
+            </#if>  
+        </div>
+    </#if>
+    <!--menù per errore-->
+    <#if ruolo_err??>
+        <div class="w3-bar w3-blue w3-large">
+                <#if ruolo_err == "Ordinante" >
+                <a href="ordinante_homepage" class="w3-bar-item w3-button w3-mobile menu-item">Richieste</a>
+                <a href="ordinante_proposte" class="w3-bar-item w3-button w3-mobile menu-item">Proposte</a>
+                <a href="ordinante_ordini" class="w3-bar-item w3-button w3-mobile menu-item">Ordini</a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menu-item">Impostazioni</a>
+                <a href="logout" class="w3-bar-item w3-button w3-mobile menu-logoutitem">
+                <i class="fa fa-sign-out "></i>
+                </a>
+                </#if>
+                <#if ruolo_err == "Tecnico">
+                <a href="tecnico_richieste" class="w3-bar-item w3-button w3-mobile menu-item">Richieste</a>
+                <a href="tecnico_proposte" class="w3-bar-item w3-button w3-mobile menu-item">Proposte</a>
+                <a href="tecnico_ordini" class="w3-bar-item w3-button w3-mobile menu-item">Ordini</a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menu-item">Impostazioni</a>  
+                <a href="logout" class="w3-bar-item w3-button w3-mobile menu-logoutitem">
+                <i class="fa fa-sign-out "></i>
+                </a>
+                </#if>
+                <#if ruolo_err == "Amministratore">
+                <a href="admin_homepage" class="w3-bar-item w3-button w3-mobile menuadmin-item">Gestisci utenti</a>
+                <a href="admin_categorie" class="w3-bar-item w3-button w3-mobile menuadmin-item">Gestisci categorie</a>
+                <a href="impostazioni" class="w3-bar-item w3-button w3-mobile menuadmin-item">Impostazioni</a>
+                <a href="logout" class="w3-bar-item w3-button w3-mobile menu-logoutitem">
+                <i class="fa fa-sign-out "></i>
+                </a>
+                </#if>  
+        </div>
+    </#if>
+</div>

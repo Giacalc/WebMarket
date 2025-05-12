@@ -1,0 +1,25 @@
+<div class="w3-container" id="body">
+    <p class="greeting">Ciao ${utente}</p>
+    
+    <h1 class="w3-center list-items-title">Richieste in carico</h1>
+    <div class="list-items-container">
+        <div class="w3-responsive">
+            <table class="w3-table-all w3-centered">
+                <tr>
+                    <th>Codice richiesta</th>
+                    <th>Utente</th>
+                    <th>Categoria</th>               
+                    <th>Stato</th>
+                </tr>
+                <#list richieste_carico as richiesta_carico>
+                <tr onclick="location.href='tecnico_detail_richiesta?r=${richiesta_carico.key}'">
+                    <td>${richiesta_carico.key}</td>
+                    <td>${richiesta_carico.IDord}</td>
+                    <td>${richiesta_carico.IDcat}</td>
+                    <td>${richiesta_carico.stato}</td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+    </div>       
+</div>
